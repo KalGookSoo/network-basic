@@ -13,8 +13,9 @@
 
 DNS는 인터넷의 전화번호부와 같은 역할을 합니다. 사람이 이해하기 쉬운 도메인 이름(예: www.example.com)을 컴퓨터가 이해할 수 있는 IP 주소(예: 93.184.216.34)로 변환해주는 시스템입니다.
 
-```
-www.example.com -----DNS 조회-----> 93.184.216.34
+```mermaid
+flowchart LR
+    A["www.example.com"] -->|DNS 조회| B["93.184.216.34"]
 ```
 
 #### DNS 작동 원리
@@ -56,6 +57,35 @@ DNS 계층 구조는 다음과 같이 구성됩니다:
 
 example.com의 IP 주소를 찾는 과정을 살펴보겠습니다:
 
+```mermaid
+sequenceDiagram
+    participant 사용자
+    participant 브라우저
+    participant 로컬DNS서버
+    participant 루트서버
+    participant TLD서버
+    participant 권한있는서버
+
+    사용자 ->> 브라우저: www.example.com 입력
+    브라우저 ->> 로컬DNS서버: www.example.com 조회 요청
+
+    Note over 로컬DNS서버: 캐시 확인 (없음)
+
+    로컬DNS서버 ->> 루트서버: www.example.com 조회 요청
+    루트서버 -->> 로컬DNS서버: .com TLD 서버 정보 반환
+
+    로컬DNS서버 ->> TLD서버: www.example.com 조회 요청
+    TLD서버 -->> 로컬DNS서버: example.com 권한 있는 서버 정보 반환
+
+    로컬DNS서버 ->> 권한있는서버: www.example.com 조회 요청
+    권한있는서버 -->> 로컬DNS서버: www.example.com의 IP 주소 반환
+
+    로컬DNS서버 -->> 브라우저: www.example.com의 IP 주소 반환
+    Note over 로컬DNS서버: IP 주소 캐싱
+
+    브라우저 -->> 사용자: 웹 페이지 표시
+```
+
 1. 사용자가 브라우저에 "www.example.com"을 입력합니다.
 2. 로컬 DNS 서버는 루트 네임 서버에 쿼리를 보냅니다.
 3. 루트 서버는 .com TLD 네임 서버의 정보를 반환합니다.
@@ -82,8 +112,19 @@ DNS 조회 과정은 시간이 소요되므로, 성능 향상을 위해 DNS 정�
 
 URI는 인터넷 상의 자원을 식별하는 문자열입니다. URI의 일반적인 구문은 다음과 같습니다:
 
-```
-scheme:[//authority]path[?query][#fragment]
+```mermaid
+flowchart LR
+    subgraph URI
+        A["scheme:"] --> B["//authority"]
+        B --> C["path"]
+        C --> D["?query"]
+        D --> E["#fragment"]
+    end
+    style B stroke-dasharray: 5 5
+    style D stroke-dasharray: 5 5
+    style E stroke-dasharray: 5 5
+
+    %% 점선은 선택적 요소를 나타냄
 ```
 
 주요 구성 요소:
@@ -98,8 +139,19 @@ scheme:[//authority]path[?query][#fragment]
 URL(Uniform Resource Locator)은 URI의 가장 일반적인 형태로, 자원의 위치를 지정합니다. 웹 주소라고도 불립니다.
 
 예시:
-```
-https://www.example.com:443/path/to/resource?param1=value1&param2=value2#section1
+```mermaid
+flowchart TD
+    subgraph URL["https://www.example.com:443/path/to/resource?param1=value1&param2=value2#section1"]
+        A["https://"] -->|scheme| B["www.example.com:443"]
+        B -->|authority| C["/path/to/resource"]
+        C -->|path| D["?param1=value1&param2=value2"]
+        D -->|query| E["#section1"]
+    end
+    style E fill:#f9f,stroke:#333,stroke-width:2px
+    style D fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#bfb,stroke:#333,stroke-width:2px
+    style B fill:#fbb,stroke:#333,stroke-width:2px
+    style A fill:#ff9,stroke:#333,stroke-width:2px
 ```
 
 위 URL의 구성 요소:
