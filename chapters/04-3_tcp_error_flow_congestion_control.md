@@ -192,11 +192,11 @@ graph LR
     end
 
 %% 윈도우 표시
-    style B1 fill: #f9f, stroke: #333, stroke-width: 2px
-    style B2 fill: #f9f, stroke: #333, stroke-width: 2px
-    style B3 fill: #f9f, stroke: #333, stroke-width: 2px
-    style C1 fill: #f9f, stroke: #333, stroke-width: 2px
-    style C2 fill: #f9f, stroke: #333, stroke-width: 2px
+    style B1 fill: #f9f, stroke: #333, stroke-width: 2px, color: #000
+    style B2 fill: #f9f, stroke: #333, stroke-width: 2px, color: #000
+    style B3 fill: #f9f, stroke: #333, stroke-width: 2px, color: #000
+    style C1 fill: #f9f, stroke: #333, stroke-width: 2px, color: #000
+    style C2 fill: #f9f, stroke: #333, stroke-width: 2px, color: #000
 %% 윈도우 이동 화살표
     D1["현재 윈도우<br>(크기=5)"] --> B1
     D2["ACK 5 수신 후<br>윈도우 이동"] -->|" 슬라이드 "| B2
@@ -260,11 +260,11 @@ graph TD
         F --> B
     end
 
-    style B fill: #f9f, stroke: #333, stroke-width: 2px
-    style C fill: #bbf, stroke: #333, stroke-width: 2px
-    style D fill: #fbb, stroke: #333, stroke-width: 2px
-    style E fill: #bfb, stroke: #333, stroke-width: 2px
-    style F fill: #fbb, stroke: #333, stroke-width: 2px
+    style B fill: #f9f, stroke: #333, stroke-width: 2px, color: #000
+    style C fill: #bbf, stroke: #333, stroke-width: 2px, color: #000
+    style D fill: #fbb, stroke: #333, stroke-width: 2px, color: #000
+    style E fill: #bfb, stroke: #333, stroke-width: 2px, color: #000
+    style F fill: #fbb, stroke: #333, stroke-width: 2px, color: #000
 ```
 
 #### TCP 혼잡 제어의 변형

@@ -23,11 +23,50 @@
 - 99.99% (4개의 9): 연간 약 52.56분의 다운타임 허용
 - 99.999% (5개의 9): 연간 약 5.26분의 다운타임 허용
 
+```mermaid
+graph LR
+    subgraph "가용성 수준에 따른 연간 허용 다운타임"
+        A["99% <br> (2개의 9)"] --> B["3.65일 <br> (87.6시간)"]
+        C["99.9% <br> (3개의 9)"] --> D["8.76시간"]
+        E["99.99% <br> (4개의 9)"] --> F["52.56분"]
+        G["99.999% <br> (5개의 9)"] --> H["5.26분"]
+    end
+
+    style A fill:#f9f, stroke:#333, stroke-width:1px, color:#000
+    style C fill:#bbf, stroke:#333, stroke-width:1px, color:#000
+    style E fill:#bfb, stroke:#333, stroke-width:1px, color:#000
+    style G fill:#fbb, stroke:#333, stroke-width:1px, color:#000
+```
+
 기업의 서비스 특성과 중요도에 따라 적절한 가용성 목표를 설정하고, 이를 달성하기 위한 기술적 방안을 마련해야 합니다.
 
 ### 이중화
 
 이중화(Redundancy)는 시스템의 중요 구성 요소를 복수로 구성하여, 일부가 실패하더라도 서비스가 중단되지 않도록 하는 기술입니다.
+
+```mermaid
+graph TD
+    A[이중화<br>Redundancy] --> B[하드웨어 이중화]
+    A --> C[소프트웨어 이중화]
+    A --> D[지역적 이중화]
+
+    B --> B1[서버 이중화]
+    B --> B2[네트워크 장비 이중화]
+    B --> B3[전원 이중화<br>UPS]
+
+    C --> C1[애플리케이션 이중화]
+    C --> C2[데이터베이스 이중화]
+    C2 --> C2a[리플리케이션<br>Replication]
+    C2 --> C2b[클러스터링<br>Clustering]
+
+    D --> D1[재해 복구<br>Disaster Recovery]
+    D --> D2[다중 리전 배포]
+
+    style A fill:#f9f, stroke:#333, stroke-width:2px, color:#000
+    style B fill:#bbf, stroke:#333, stroke-width:1px, color:#000
+    style C fill:#bfb, stroke:#333, stroke-width:1px, color:#000
+    style D fill:#fbb, stroke:#333, stroke-width:1px, color:#000
+```
 
 #### 하드웨어 이중화
 
@@ -57,6 +96,43 @@
 
 로드 밸런싱(Load Balancing)은 여러 서버에 네트워크 트래픽을 분산하여 시스템의 부하를 균등하게 분배하는 기술입니다. 이를 통해 시스템의 가용성과 확장성을 높일 수 있습니다.
 
+```mermaid
+graph TD
+    A[클라이언트] --> B[로드 밸런서]
+    B --> C[서버 1]
+    B --> D[서버 2]
+    B --> E[서버 3]
+
+    subgraph "로드 밸런싱 알고리즘"
+        F1[라운드 로빈]
+        F2[가중치 기반<br>라운드 로빈]
+        F3[최소 연결]
+        F4[IP 해시]
+    end
+
+    subgraph "로드 밸런서 종류"
+        G1[L4 로드 밸런서<br>IP/포트 기반]
+        G2[L7 로드 밸런서<br>애플리케이션 기반]
+    end
+
+    H[헬스 체크] --> C
+    H --> D
+    H --> E
+    H -.-> |"서버 2 장애"| I["트래픽 우회"]
+    I --> C
+    I --> E
+
+    style B fill:#f9f, stroke:#333, stroke-width:2px, color:#000
+    style H fill:#bbf, stroke:#333, stroke-width:1px, color:#000
+    style F1 fill:#bfb, stroke:#333, stroke-width:1px, color:#000
+    style F2 fill:#bfb, stroke:#333, stroke-width:1px, color:#000
+    style F3 fill:#bfb, stroke:#333, stroke-width:1px, color:#000
+    style F4 fill:#bfb, stroke:#333, stroke-width:1px, color:#000
+    style G1 fill:#fbb, stroke:#333, stroke-width:1px, color:#000
+    style G2 fill:#fbb, stroke:#333, stroke-width:1px, color:#000
+    style D fill:#fdd, stroke:#f00, stroke-width:2px, stroke-dasharray: 5 5, color:#000
+```
+
 #### 로드 밸런서의 종류
 
 로드 밸런서는 동작하는 네트워크 계층에 따라 다음과 같이 분류할 수 있습니다:
@@ -83,6 +159,39 @@
 ### [좀 더 알아보기] 포워드 프록시와 리버스 프록시
 
 프록시 서버는 클라이언트와 서버 사이에서 중개 역할을 하는 서버입니다. 프록시 서버는 용도에 따라 포워드 프록시와 리버스 프록시로 구분됩니다.
+
+```mermaid
+graph TD
+    subgraph "포워드 프록시"
+        A1[클라이언트] --> B1[포워드 프록시]
+        B1 --> C1[인터넷]
+        C1 --> D1[웹 서버 1]
+        C1 --> E1[웹 서버 2]
+
+        style B1 fill:#bbf, stroke:#333, stroke-width:2px, color:#000
+        style A1 fill:#bfb, stroke:#333, stroke-width:1px, color:#000
+    end
+
+    subgraph "리버스 프록시"
+        A2[클라이언트 1] --> C2[인터넷]
+        B2[클라이언트 2] --> C2
+        C2 --> D2[리버스 프록시]
+        D2 --> E2[내부 서버 1]
+        D2 --> F2[내부 서버 2]
+        D2 --> G2[내부 서버 3]
+
+        style D2 fill:#f9f, stroke:#333, stroke-width:2px, color:#000
+        style E2 fill:#fbb, stroke:#333, stroke-width:1px, color:#000
+        style F2 fill:#fbb, stroke:#333, stroke-width:1px, color:#000
+        style G2 fill:#fbb, stroke:#333, stroke-width:1px, color:#000
+    end
+
+    H1["클라이언트가 프록시를<br>명시적으로 설정"] --> B1
+    D2 --> H2["클라이언트는 프록시의<br>존재를 모름"]
+
+    I1["서버는 프록시 IP만 확인<br>(클라이언트 익명성)"] --> D1
+    I2["내부 서버 정보 숨김<br>(보안 강화)"] --> D2
+```
 
 #### 포워드 프록시
 

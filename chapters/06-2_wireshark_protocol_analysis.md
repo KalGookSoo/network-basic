@@ -66,6 +66,25 @@ TCP(Transmission Control Protocol)는 연결 지향적이고 신뢰성 있는 �
 
 TCP 연결 수립은 3-way 핸드셰이크 과정을 통해 이루어집니다.
 
+```mermaid
+sequenceDiagram
+    participant 클라이언트
+    participant 서버
+
+    Note over 클라이언트, 서버: TCP 3-way 핸드셰이크
+
+    클라이언트->>서버: SYN (seq=x)
+    Note right of 클라이언트: tcp.flags.syn == 1<br>tcp.flags.ack == 0
+
+    서버->>클라이언트: SYN-ACK (seq=y, ack=x+1)
+    Note left of 서버: tcp.flags.syn == 1<br>tcp.flags.ack == 1
+
+    클라이언트->>서버: ACK (seq=x+1, ack=y+1)
+    Note right of 클라이언트: tcp.flags.syn == 0<br>tcp.flags.ack == 1
+
+    Note over 클라이언트, 서버: 연결 수립 완료<br>데이터 전송 시작
+```
+
 1. **3-way 핸드셰이크 관찰하기**:
     - 웹 브라우저로 웹사이트 접속 시 발생하는 TCP 연결을 캡처합니다.
     - 필터: `tcp.flags.syn == 1 || tcp.flags.ack == 1 && tcp.flags.fin == 0`
@@ -85,6 +104,32 @@ TCP 연결 수립은 3-way 핸드셰이크 과정을 통해 이루어집니다.
 #### TCP 연결 종료
 
 TCP 연결 종료는 일반적으로 4-way 핸드셰이크 과정을 통해 이루어집니다.
+
+```mermaid
+sequenceDiagram
+    participant 클라이언트
+    participant 서버
+
+    Note over 클라이언트, 서버: TCP 4-way 핸드셰이크 (연결 종료)
+
+    클라이언트->>서버: FIN (seq=m)
+    Note right of 클라이언트: tcp.flags.fin == 1
+
+    서버->>클라이언트: ACK (ack=m+1)
+    Note left of 서버: tcp.flags.ack == 1
+
+    Note over 서버: 서버는 여전히 데이터를<br>전송할 수 있음 (CLOSE_WAIT)
+
+    서버->>클라이언트: FIN (seq=n)
+    Note left of 서버: tcp.flags.fin == 1
+
+    클라이언트->>서버: ACK (ack=n+1)
+    Note right of 클라이언트: tcp.flags.ack == 1
+
+    Note over 클라이언트: TIME_WAIT 상태<br>(2MSL 동안 대기)
+
+    Note over 클라이언트, 서버: 연결 완전히 종료
+```
 
 1. **4-way 핸드셰이크 관찰하기**:
     - 웹 페이지 로딩 완료 후 발생하는 TCP 연결 종료를 캡처합니다.
