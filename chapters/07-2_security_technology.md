@@ -178,9 +178,9 @@ graph TD
     C --> D[최종 사용자 인증서<br>중간 CA가 서명]
     D --> E[웹사이트/서버]
 
-    F[인증서 체인 검증 과정] --> G[1. 최종 사용자 인증서 검증<br>중간 CA의 공개 키로 서명 확인]
-    G --> H[2. 중간 CA 인증서 검증<br>루트 CA의 공개 키로 서명 확인]
-    H --> I[3. 루트 CA 인증서 확인<br>신뢰 저장소에 있는지 확인]
+    F[인증서 체인 검증 과정] --> G[최종 사용자 인증서 검증<br>중간 CA의 공개 키로 서명 확인]
+    G --> H[중간 CA 인증서 검증<br>루트 CA의 공개 키로 서명 확인]
+    H --> I[루트 CA 인증서 확인<br>신뢰 저장소에 있는지 확인]
 
     style B fill:#f9f, stroke:#333, stroke-width:2px, color:#000
     style C fill:#bbf, stroke:#333, stroke-width:1px, color:#000
