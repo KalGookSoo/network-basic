@@ -427,4 +427,41 @@ Accept-Language: fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5
 
 **해설**: 맥OS에서 Homebrew를 사용하여 와이어샤크를 설치하는 올바른 명령어는 "brew install --cask wireshark"입니다. 이 명령어는 Homebrew의 Cask 확장을 사용하여 GUI 애플리케이션인 와이어샤크를 설치합니다. "apt-get install wireshark"는 Debian 기반 Linux 배포판(Ubuntu 등)에서 사용하는 명령어입니다. "sudo install wireshark"는 유효한 설치 명령어가 아니며, "brew cask install wireshark"는 예전 Homebrew 버전에서 사용되던 명령어로, 현재는 "brew install --cask" 형식을 권장합니다.
 
+### 06-2 와이어샤크를 통한 프로토콜 분석
+
+#### 문제 1
+**문제**: 와이어샤크에서 IPv4 단편화된 패킷을 필터링하기 위한 올바른 표현식은?
+
+**정답**: ip.flags.mf == 1 || ip.frag_offset > 0
+
+**해설**: IPv4 패킷이 단편화되면 두 가지 특징이 있습니다: 마지막 조각을 제외한 모든 조각은 More Fragments(MF) 플래그가 설정되어 있고, 첫 번째 조각을 제외한 모든 조각은 Fragment Offset 값이 0보다 큽니다. 따라서 단편화된 패킷을 필터링하기 위해서는 "ip.flags.mf == 1 || ip.frag_offset > 0" 표현식을 사용합니다. 이 표현식은 MF 플래그가 설정된 패킷 또는 Fragment Offset이 0보다 큰 패킷을 모두 표시합니다. "ip.fragmentation == 1"과 "ip.fragment == true"는 와이어샤크에서 유효한 필터 표현식이 아니며, "ip.fragment_flag == 1"은 정확한 필드 이름이 아닙니다.
+
+#### 문제 2
+**문제**: TCP 3-way 핸드셰이크의 두 번째 단계에서 서버가 보내는 패킷의 플래그 조합은?
+
+**정답**: SYN-ACK
+
+**해설**: TCP 3-way 핸드셰이크는 다음과 같은 세 단계로 이루어집니다: 1) 클라이언트가 SYN 플래그가 설정된 패킷을 서버에 보냅니다. 2) 서버는 SYN과 ACK 플래그가 모두 설정된 패킷(SYN-ACK)으로 응답합니다. 3) 클라이언트는 ACK 플래그가 설정된 패킷으로 응답합니다. 따라서 두 번째 단계에서 서버가 보내는 패킷의 플래그 조합은 SYN-ACK입니다. 이는 서버가 클라이언트의 연결 요청을 수락하고(SYN), 동시에 클라이언트의 SYN 패킷을 받았음을 확인(ACK)하는 의미입니다.
+
+#### 문제 3
+**문제**: 와이어샤크에서 TCP 재전송 패킷을 필터링하는 표현식은?
+
+**정답**: tcp.analysis.retransmission
+
+**해설**: 와이어샤크는 TCP 패킷 분석 중 재전송으로 판단되는 패킷을 자동으로 식별합니다. 이러한 패킷을 필터링하기 위해서는 "tcp.analysis.retransmission" 표현식을 사용합니다. 이 필터는 와이어샤크의 분석 엔진이 재전송으로 판단한 모든 TCP 패킷을 표시합니다. "tcp.retransmission"은 유효한 필터가 아니며, "tcp.flags.retransmit == 1"과 "tcp.resend == true"는 TCP 헤더에 재전송을 직접 나타내는 플래그가 없기 때문에 유효하지 않습니다. TCP는 시퀀스 번호와 타이머를 사용하여 재전송을 관리하며, 와이어샤크는 이러한 정보를 분석하여 재전송을 식별합니다.
+
+#### 문제 4
+**문제**: HTTP GET 요청과 해당 응답을 포함한 전체 대화를 보기 위해 와이어샤크에서 사용하는 기능은?
+
+**정답**: Follow HTTP Stream
+
+**해설**: 와이어샤크에서 HTTP GET 요청과 해당 응답을 포함한 전체 대화를 보기 위해서는 "Follow HTTP Stream" 기능을 사용합니다. 이 기능은 HTTP 패킷을 선택한 후 마우스 오른쪽 버튼을 클릭하여 나타나는 컨텍스트 메뉴에서 "Follow" → "HTTP Stream"을 선택하여 접근할 수 있습니다. 이 기능은 TCP 스트림을 재구성하여 HTTP 요청과 응답을 포함한 전체 대화를 텍스트 형식으로 보여줍니다. 클라이언트에서 서버로의 트래픽은 일반적으로 빨간색으로, 서버에서 클라이언트로의 트래픽은 파란색으로 표시됩니다. "View HTTP Headers", "Decode HTTP", "Extract HTTP Objects"는 와이어샤크에서 제공하는 정확한 기능 이름이 아닙니다.
+
+#### 문제 5
+**문제**: IPv6에서 패킷 단편화를 위해 사용하는 확장 헤더는?
+
+**정답**: Fragment 헤더
+
+**해설**: IPv6에서는 패킷 단편화를 위해 Fragment 확장 헤더를 사용합니다. IPv6는 기본적으로 라우터에서 패킷 단편화를 수행하지 않고, 대신 경로 MTU 발견 메커니즘을 사용하여 패킷 크기를 조정합니다. 그러나 필요한 경우 출발지 호스트는 Fragment 확장 헤더를 사용하여 패킷을 단편화할 수 있습니다. 다른 IPv6 확장 헤더로는 Hop-by-Hop Options 헤더(모든 홉에서 처리해야 하는 옵션), Routing 헤더(패킷이 거쳐야 할 경로 지정), Destination Options 헤더(목적지에서만 처리되는 옵션) 등이 있습니다. 와이어샤크에서는 `ipv6.nxt == 44` 필터를 사용하여 Fragment 헤더를 가진 IPv6 패킷을 필터링할 수 있습니다.
+
 [이하 각 장의 문제와 정답 형식은 위와 동일하게 구성됩니다.]
