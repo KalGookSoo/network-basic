@@ -19,6 +19,27 @@ IP 주소는 네트워크 부분(Network Portion)과 호스트 부분(Host Porti
 
 네트워크 주소와 호스트 주소를 구분하는 방법은 주소 체계에 따라 다릅니다. 초기에는 클래스풀 주소 체계를 사용했으나, 현재는 클래스리스 주소 체계가 주로 사용됩니다.
 
+```mermaid
+graph LR
+    subgraph "IP 주소 구조"
+        style IP fill:#f5f5f5,stroke:#333,stroke-width:1px,color:black
+        subgraph IP[IP 주소 - 32비트]
+            style Network fill:#4b77be,stroke:#333,stroke-width:1px,color:white
+            style Host fill:#28a745,stroke:#333,stroke-width:1px,color:white
+            Network[네트워크 부분<br>Network Portion] --- Host[호스트 부분<br>Host Portion]
+        end
+    end
+    
+    subgraph "예시: 192.168.1.10/24"
+        style Example fill:#f5f5f5,stroke:#333,stroke-width:1px,color:black
+        subgraph Example[IP 주소 예시]
+            style Network2 fill:#4b77be,stroke:#333,stroke-width:1px,color:white
+            style Host2 fill:#28a745,stroke:#333,stroke-width:1px,color:white
+            Network2[192.168.1] --- Host2[10]
+        end
+    end
+```
+
 ### 클래스풀 주소 체계
 
 클래스풀 주소 체계(Classful Addressing)는 IPv4 주소를 5개의 클래스(A, B, C, D, E)로 나누어 관리하는 방식입니다. 각 클래스는 IP 주소의 첫 번째 옥텟(8비트) 값에 따라 구분됩니다.
@@ -57,6 +78,23 @@ IP 주소는 네트워크 부분(Network Portion)과 호스트 부분(Host Porti
    - 실험 및 향후 사용을 위해 예약
    - 네트워크와 호스트 구분 없음
 
+```mermaid
+graph TD
+    subgraph "IPv4 클래스풀 주소 체계"
+        style ClassA fill:#4b77be,stroke:#333,stroke-width:1px,color:white
+        style ClassB fill:#28a745,stroke:#333,stroke-width:1px,color:white
+        style ClassC fill:#ffc107,stroke:#333,stroke-width:1px,color:black
+        style ClassD fill:#dc3545,stroke:#333,stroke-width:1px,color:white
+        style ClassE fill:#6c757d,stroke:#333,stroke-width:1px,color:white
+        
+        ClassA["클래스 A (1-126)<br>0XXXXXXX.XXXXXXXX.XXXXXXXX.XXXXXXXX<br>네트워크: 8비트 / 호스트: 24비트<br>형식: N.H.H.H"]
+        ClassB["클래스 B (128-191)<br>10XXXXXX.XXXXXXXX.XXXXXXXX.XXXXXXXX<br>네트워크: 16비트 / 호스트: 16비트<br>형식: N.N.H.H"]
+        ClassC["클래스 C (192-223)<br>110XXXXX.XXXXXXXX.XXXXXXXX.XXXXXXXX<br>네트워크: 24비트 / 호스트: 8비트<br>형식: N.N.N.H"]
+        ClassD["클래스 D (224-239)<br>1110XXXX.XXXXXXXX.XXXXXXXX.XXXXXXXX<br>멀티캐스트 주소"]
+        ClassE["클래스 E (240-255)<br>1111XXXX.XXXXXXXX.XXXXXXXX.XXXXXXXX<br>실험 및 향후 사용 예약"]
+    end
+```
+
 클래스풀 주소 체계의 한계:
 - **주소 공간 낭비**: 클래스 A와 B는 너무 많은 호스트 주소를 할당하여 많은 주소가 낭비됩니다.
 - **유연성 부족**: 네트워크 크기가 클래스 경계에 맞지 않을 경우 비효율적입니다.
@@ -88,11 +126,38 @@ IP 주소와 서브넷 마스크의 비트 AND 연산을 통해 네트워크 주
 - 비트 AND 연산 결과: 11000000.10101000.00001010.00000000 = 192.168.10.0
 - 따라서 네트워크 주소는 192.168.10.0입니다.
 
+```mermaid
+graph TD
+    subgraph "서브넷 마스크와 AND 연산"
+        style IP fill:#4b77be,stroke:#333,stroke-width:1px,color:white
+        style Mask fill:#dc3545,stroke:#333,stroke-width:1px,color:white
+        style Result fill:#28a745,stroke:#333,stroke-width:1px,color:white
+        
+        IP["IP 주소: 192.168.10.5<br>11000000.10101000.00001010.00000101"]
+        Mask["서브넷 마스크: 255.255.255.0<br>11111111.11111111.11111111.00000000"]
+        Result["네트워크 주소: 192.168.10.0<br>11000000.10101000.00001010.00000000"]
+        
+        IP --> AND((AND 연산))
+        Mask --> AND
+        AND --> Result
+    end
+    
+    subgraph "CIDR 표기법"
+        style CIDR fill:#f5f5f5,stroke:#333,stroke-width:1px,color:black
+        style Prefix fill:#17a2b8,stroke:#333,stroke-width:1px,color:white
+        
+        CIDR["192.168.10.5/24"]
+        Prefix["접두사 길이 (24)<br>= 네트워크 비트 수<br>= 서브넷 마스크의 1의 개수"]
+        
+        CIDR --> Prefix
+    end
+```
+
 서브네팅을 통해 하나의 큰 네트워크를 여러 개의 작은 서브넷으로 분할할 수 있습니다. 이는 네트워크 관리를 용이하게 하고, 브로드캐스트 도메인을 줄여 네트워크 효율성을 높입니다.
 
 #### 서브넷 마스크 표기: CIDR 표기법
 
-CIDR(Classless Inter-Domain Routing) 표기법은 IP 주소와 서브넷 마스크를 간결하게 표현하는 방법입니다. IP 주소 뒤에 슬래시(/)와 네트워크 비트 수를 붙여 표기합니다.
+[CIDR(Classless Inter-Domain Routing)](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) 표기법은 IP 주소와 서브넷 마스크를 간결하게 표현하는 방법입니다. IP 주소 뒤에 슬래시(/)와 네트워크 비트 수를 붙여 표기합니다.
 
 예시:
 - 192.168.10.5/24는 IP 주소가 192.168.10.5이고, 서브넷 마스크의 처음 24비트가 1임을 의미합니다 (255.255.255.0).
@@ -116,11 +181,11 @@ IP 주소는 인터넷에서의 사용 범위에 따라 공인 IP 주소와 사�
 - 인터넷 접속 제공업체(ISP)로부터 할당받거나 구매
 - 인터넷 상에서 직접 라우팅 가능
 - 전 세계적으로 유일해야 함
-- IANA(Internet Assigned Numbers Authority)와 지역 인터넷 레지스트리(RIR)에 의해 관리
+- [IANA(Internet Assigned Numbers Authority)](https://www.iana.org/)와 [지역 인터넷 레지스트리(RIR)](https://en.wikipedia.org/wiki/Regional_Internet_registry)에 의해 관리
 
 #### 사설 IP 주소와 NAT
 
-사설 IP 주소(Private IP Address)는 인터넷에 직접 연결되지 않는 내부 네트워크에서 사용되는 주소입니다. RFC 1918에 의해 다음과 같은 주소 범위가 사설 IP 주소로 예약되어 있습니다:
+사설 IP 주소(Private IP Address)는 인터넷에 직접 연결되지 않는 내부 네트워크에서 사용되는 주소입니다. [RFC 1918](https://datatracker.ietf.org/doc/html/rfc1918)에 의해 다음과 같은 주소 범위가 사설 IP 주소로 예약되어 있습니다:
 
 - 10.0.0.0 - 10.255.255.255 (10.0.0.0/8)
 - 172.16.0.0 - 172.31.255.255 (172.16.0.0/12)
@@ -132,12 +197,35 @@ IP 주소는 인터넷에서의 사용 범위에 따라 공인 IP 주소와 사�
 - 여러 조직에서 동일한 사설 IP 주소 범위를 사용 가능
 - 인터넷 접속을 위해 NAT(Network Address Translation) 필요
 
-NAT(Network Address Translation)는 사설 IP 주소를 공인 IP 주소로 변환하는 기술입니다. NAT를 통해 여러 내부 장치가 하나의 공인 IP 주소를 공유하여 인터넷에 접속할 수 있습니다.
+[NAT(Network Address Translation)](https://en.wikipedia.org/wiki/Network_address_translation)는 사설 IP 주소를 공인 IP 주소로 변환하는 기술입니다. NAT를 통해 여러 내부 장치가 하나의 공인 IP 주소를 공유하여 인터넷에 접속할 수 있습니다.
 
 NAT의 작동 원리:
 1. 내부 장치가 외부로 패킷을 보낼 때, NAT 장치는 사설 IP 주소와 포트를 공인 IP 주소와 새로운 포트로 변환
 2. 변환 정보를 NAT 테이블에 저장
 3. 외부에서 응답이 오면, NAT 테이블을 참조하여 원래의 사설 IP 주소와 포트로 변환하여 내부 장치에 전달
+
+```mermaid
+sequenceDiagram
+    participant Client as 내부 클라이언트<br>192.168.1.10:3000
+    participant NAT as NAT 장치
+    participant Server as 외부 서버<br>203.0.113.5:80
+    
+    rect rgb(240, 240, 240, 0)
+        note right of Client: 1. 패킷 전송 (내부→외부)
+        Client->>NAT: 출발: 192.168.1.10:3000<br>목적지: 203.0.113.5:80
+        NAT->>+NAT: NAT 변환 수행
+        Note over NAT: 사설 IP:포트 → 공인 IP:포트<br>192.168.1.10:3000 → 64.9.224.50:5000
+        NAT->>Server: 출발: 64.9.224.50:5000<br>목적지: 203.0.113.5:80
+    end
+    
+    rect rgb(240, 240, 240, 0)
+        note right of Server: 2. 응답 패킷 (외부→내부)
+        Server->>NAT: 출발: 203.0.113.5:80<br>목적지: 64.9.224.50:5000
+        NAT->>-NAT: NAT 테이블 참조
+        Note over NAT: 공인 IP:포트 → 사설 IP:포트<br>64.9.224.50:5000 → 192.168.1.10:3000
+        NAT->>Client: 출발: 203.0.113.5:80<br>목적지: 192.168.1.10:3000
+    end
+```
 
 NAT의 장점:
 - IP 주소 절약: 여러 장치가 하나의 공인 IP 주소를 공유
@@ -176,13 +264,40 @@ IP 주소는 할당 방식에 따라 정적 IP 주소와 동적 IP 주소로 구
 
 #### 동적 할당과 DHCP
 
-동적 IP 주소(Dynamic IP Address)는 자동으로 할당되며 시간에 따라 변경될 수 있는 IP 주소입니다. 주로 DHCP(Dynamic Host Configuration Protocol)를 통해 할당됩니다.
+동적 IP 주소(Dynamic IP Address)는 자동으로 할당되며 시간에 따라 변경될 수 있는 IP 주소입니다. 주로 [DHCP(Dynamic Host Configuration Protocol)](https://en.wikipedia.org/wiki/Dynamic_Host_Configuration_Protocol)를 통해 할당됩니다.
 
 DHCP의 작동 원리:
 1. **DHCP 발견(DHCP Discover)**: 클라이언트가 네트워크에 연결되면 DHCP 서버를 찾기 위해 브로드캐스트 메시지 전송
 2. **DHCP 제안(DHCP Offer)**: DHCP 서버가 사용 가능한 IP 주소와 구성 정보를 제안
 3. **DHCP 요청(DHCP Request)**: 클라이언트가 제안된 IP 주소 사용을 요청
 4. **DHCP 승인(DHCP Acknowledgment)**: DHCP 서버가 요청을 승인하고 IP 주소 임대 시간 등의 정보 제공
+
+```mermaid
+sequenceDiagram
+    participant Client as DHCP 클라이언트<br>(IP 없음)
+    participant Server as DHCP 서버<br>192.168.1.1
+    
+    rect rgb(230, 242, 255, 0)
+        note right of Client: 1. DHCP Discover
+        Client->>Server: DHCP Discover (브로드캐스트)<br>출발: 0.0.0.0:68<br>목적지: 255.255.255.255:67
+    end
+    
+    rect rgb(255, 240, 230, 0)
+        note right of Server: 2. DHCP Offer
+        Server->>Client: DHCP Offer<br>출발: 192.168.1.1:67<br>목적지: 255.255.255.255:68<br>제안 IP: 192.168.1.100
+    end
+    
+    rect rgb(230, 255, 230, 0)
+        note right of Client: 3. DHCP Request
+        Client->>Server: DHCP Request (브로드캐스트)<br>출발: 0.0.0.0:68<br>목적지: 255.255.255.255:67<br>요청 IP: 192.168.1.100
+    end
+    
+    rect rgb(240, 230, 255, 0)
+        note right of Server: 4. DHCP Acknowledgment
+        Server->>Client: DHCP ACK<br>출발: 192.168.1.1:67<br>목적지: 255.255.255.255:68<br>할당 IP: 192.168.1.100<br>서브넷 마스크, 게이트웨이, DNS 등
+        note right of Client: 클라이언트가 IP 주소 구성 완료<br>192.168.1.100
+    end
+```
 
 DHCP를 통해 할당되는 정보:
 - IP 주소
