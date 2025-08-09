@@ -336,34 +336,34 @@ graph TD
    - [ ] 장애물 투과성이 5GHz보다 좋다.
    - [ ] 도달 거리가 5GHz보다 길다.
    - [ ] 블루투스와 같은 다른 기기와 간섭이 발생할 수 있다.
-   - [x] 사용 가능한 채널 수가 5GHz보다 많다.
+   - [ ] 사용 가능한 채널 수가 5GHz보다 많다.
 
 2. 다음 중 무선 네트워크에서 주파수 대역이 높아질수록 나타나는 특성은?
    - [ ] 장애물 투과성이 좋아진다
    - [ ] 도달 거리가 길어진다
-   - [x] 더 많은 채널을 사용할 수 있다
+   - [ ] 더 많은 채널을 사용할 수 있다
    - [ ] 다른 기기와의 간섭이 증가한다
 
 3. 무선 네트워크에서 사용하는 매체 접근 제어 방식은?
    - [ ] CSMA/CD
-   - [x] CSMA/CA
+   - [ ] CSMA/CA
    - [ ] Token Ring
    - [ ] TDMA
 
 4. 다음 중 와이파이 보안 프로토콜을 시간순으로 올바르게 나열한 것은?
-   - [x] WEP → WPA → WPA2 → WPA3
+   - [ ] WEP → WPA → WPA2 → WPA3
    - [ ] WPA → WEP → WPA2 → WPA3
    - [ ] WPA → WPA2 → WEP → WPA3
    - [ ] WEP → WPA2 → WPA → WPA3
 
 5. 여러 AP가 동일한 SSID로 연결된 무선 네트워크 구성을 무엇이라고 하는가?
    - [ ] BSS (Basic Service Set)
-   - [x] ESS (Extended Service Set)
+   - [ ] ESS (Extended Service Set)
    - [ ] IBSS (Independent Basic Service Set)
    - [ ] MSS (Multiple Service Set)
 
 6. 무선 클라이언트가 하나의 AP에서 다른 AP로 이동할 때 연결을 유지하는 과정을 무엇이라고 하는가?
-   - [x] 로밍(Roaming)
+   - [ ] 로밍(Roaming)
    - [ ] 핸드오버(Handover)
    - [ ] 스위칭(Switching)
    - [ ] 브리징(Bridging)
@@ -371,17 +371,17 @@ graph TD
 7. 다음 중 메시 네트워크의 특징이 아닌 것은?
    - [ ] AP 간 무선 연결로 네트워크 확장
    - [ ] 자동 경로 설정 및 자가 복구 기능
-   - [x] 모든 통신이 중앙 컨트롤러를 통해 이루어짐
+   - [ ] 모든 통신이 중앙 컨트롤러를 통해 이루어짐
    - [ ] 단일 장애점 제거로 안정성 향상
 
 8. 무선 네트워크에서 비중첩 채널(non-overlapping channels)을 사용하는 주된 이유는?
    - [ ] 전송 속도를 높이기 위해
-   - [x] 채널 간 간섭을 최소화하기 위해
+   - [ ] 채널 간 간섭을 최소화하기 위해
    - [ ] 보안성을 강화하기 위해
    - [ ] 전력 소비를 줄이기 위해
 
 9. 다음 중 와이파이 네트워크의 식별자로 사용되는 것은?
-   - [x] SSID
+   - [ ] SSID
    - [ ] MAC
    - [ ] IP
    - [ ] DNS

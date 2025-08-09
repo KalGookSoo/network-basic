@@ -342,18 +342,18 @@ sequenceDiagram
    - [ ] Host
    - [ ] User-Agent
    - [ ] Referer
-   - [x] Set-Cookie
+   - [ ] Set-Cookie
 
 2. Cache-Control 헤더의 지시어 중 캐시된 응답을 사용하기 전에 서버에 검증 요청을 보내야 함을 의미하는 것은?
    - [ ] no-store
-   - [x] no-cache
+   - [ ] no-cache
    - [ ] private
    - [ ] public
 
 3. 쿠키의 SameSite 속성에 대한 설명으로 옳지 않은 것은?
    - [ ] Strict: 같은 사이트의 요청에만 쿠키를 전송
    - [ ] Lax: 같은 사이트와 일부 크로스 사이트 요청에 쿠키를 전송
-   - [x] None: 모든 크로스 사이트 요청에 쿠키를 전송(Secure 속성 없이도 사용 가능)
+   - [ ] None: 모든 크로스 사이트 요청에 쿠키를 전송(Secure 속성 없이도 사용 가능)
    - [ ] 기본값은 브라우저마다 다를 수 있음
 
 4. 다음 Accept-Language 헤더에서 가장 선호하는 언어는?
@@ -361,14 +361,14 @@ sequenceDiagram
    Accept-Language: fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5
    ```
    - [ ] fr
-   - [x] fr-CH
+   - [ ] fr-CH
    - [ ] en
    - [ ] de
 
 5. 다음 중 ETag 헤더의 주요 용도로 가장 적절한 것은?
    - [ ] 클라이언트가 지원하는 인코딩 방식을 서버에 알림
    - [ ] 리소스의 MIME 타입을 지정
-   - [x] 리소스의 특정 버전을 식별하여 캐시 검증에 사용
+   - [ ] 리소스의 특정 버전을 식별하여 캐시 검증에 사용
    - [ ] 응답 본문의 크기를 바이트 단위로 지정
 
 > [정답 및 해설 보기](../answers_and_explanations.md#05-3-http-헤더와-http-기반-기술)

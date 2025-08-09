@@ -207,31 +207,31 @@ HTTP(Hypertext Transfer Protocol)는 웹 브라우저와 웹 서버 간의 통�
 1. 와이어샤크에서 IPv4 단편화된 패킷을 필터링하기 위한 올바른 표현식은?
     - [ ] ip.fragmentation == 1
     - [ ] ip.fragment == true
-    - [x] ip.flags.mf == 1 || ip.frag_offset > 0
+    - [ ] ip.flags.mf == 1 || ip.frag_offset > 0
     - [ ] ip.fragment_flag == 1
 
 2. TCP 3-way 핸드셰이크의 두 번째 단계에서 서버가 보내는 패킷의 플래그 조합은?
     - [ ] SYN
-    - [x] SYN-ACK
+    - [ ] SYN-ACK
     - [ ] ACK
     - [ ] FIN-ACK
 
 3. 와이어샤크에서 TCP 재전송 패킷을 필터링하는 표현식은?
     - [ ] tcp.retransmission
-    - [x] tcp.analysis.retransmission
+    - [ ] tcp.analysis.retransmission
     - [ ] tcp.flags.retransmit == 1
     - [ ] tcp.resend == true
 
 4. HTTP GET 요청과 해당 응답을 포함한 전체 대화를 보기 위해 와이어샤크에서 사용하는 기능은?
     - [ ] View HTTP Headers
     - [ ] Decode HTTP
-    - [x] Follow HTTP Stream
+    - [ ] Follow HTTP Stream
     - [ ] Extract HTTP Objects
 
 5. IPv6에서 패킷 단편화를 위해 사용하는 확장 헤더는?
     - [ ] Hop-by-Hop Options 헤더
     - [ ] Routing 헤더
-    - [x] Fragment 헤더
+    - [ ] Fragment 헤더
     - [ ] Destination Options 헤더
 
 > [정답 및 해설 보기](../answers_and_explanations.md#06-2-와이어샤크를-통한-프로토콜-분석)

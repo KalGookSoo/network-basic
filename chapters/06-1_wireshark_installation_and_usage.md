@@ -113,7 +113,7 @@
 ### 확인 문제
 1. 와이어샤크에서 HTTP 트래픽만 필터링하기 위한 올바른 디스플레이 필터는 무엇인가요?
    - [ ] http.traffic
-   - [x] http
+   - [ ] http
    - [ ] port 80
    - [ ] protocol http
 
@@ -121,10 +121,10 @@
    - [ ] 패킷 목록 창은 캡처된 모든 패킷을 시간순으로 나열합니다.
    - [ ] 패킷 상세 창은 선택한 패킷의 프로토콜 계층별 정보를 보여줍니다.
    - [ ] 패킷 바이트 창은 선택한 패킷의 원시 데이터를 16진수와 ASCII 형식으로 표시합니다.
-   - [x] 패킷 분석 창은 선택한 패킷의 보안 취약점을 자동으로 분석합니다.
+   - [ ] 패킷 분석 창은 선택한 패킷의 보안 취약점을 자동으로 분석합니다.
 
 3. 맥OS에서 와이어샤크를 설치하는 방법 중 Homebrew를 사용한 명령어는 무엇인가요?
-   - [x] brew install --cask wireshark
+   - [ ] brew install --cask wireshark
    - [ ] apt-get install wireshark
    - [ ] sudo install wireshark
    - [ ] brew cask install wireshark
