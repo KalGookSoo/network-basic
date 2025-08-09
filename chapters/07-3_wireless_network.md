@@ -24,12 +24,12 @@ graph LR
         H["2.4GHz 대역<br>(2.4-2.4835GHz)"] --> I["5GHz 대역<br>(5.15-5.85GHz)"] --> J["6GHz 대역<br>(Wi-Fi 6E)"] --> K["60GHz 대역<br>(WiGig)"]
     end
 
-    style A fill:#f9f, stroke:#333, stroke-width:1px, color:#000
-    style B fill:#f9f, stroke:#333, stroke-width:1px, color:#000
-    style H fill:#bbf, stroke:#333, stroke-width:2px, color:#000
-    style I fill:#bbf, stroke:#333, stroke-width:2px, color:#000
-    style J fill:#bbf, stroke:#333, stroke-width:2px, color:#000
-    style K fill:#bbf, stroke:#333, stroke-width:2px, color:#000
+    style A fill:#808080, stroke:#333, stroke-width:1px, color:#000
+    style B fill:#808080, stroke:#333, stroke-width:1px, color:#000
+    style H fill:#3cb371, stroke:#333, stroke-width:2px, color:#000
+    style I fill:#3cb371, stroke:#333, stroke-width:2px, color:#000
+    style J fill:#3cb371, stroke:#333, stroke-width:2px, color:#000
+    style K fill:#3cb371, stroke:#333, stroke-width:2px, color:#000
 ```
 
 #### 주파수와 채널
@@ -50,11 +50,11 @@ graph TD
         H -.-> J["채널 11<br>(2.462GHz)"]
     end
 
-    style A fill:#bfb, stroke:#333, stroke-width:2px, color:#000
-    style I fill:#bfb, stroke:#333, stroke-width:2px, color:#000
-    style J fill:#bfb, stroke:#333, stroke-width:2px, color:#000
-    style G fill:#fdd, stroke:#f00, stroke-width:1px, color:#000
-    style H fill:#bbf, stroke:#333, stroke-width:1px, color:#000
+    style A fill:#3cb371, stroke:#333, stroke-width:2px, color:#000
+    style I fill:#3cb371, stroke:#333, stroke-width:2px, color:#000
+    style J fill:#3cb371, stroke:#333, stroke-width:2px, color:#000
+    style G fill:#c35b5b, stroke:#f00, stroke-width:1px, color:#000
+    style H fill:#daa520, stroke:#333, stroke-width:1px, color:#000
 ```
 
 #### 주파수 대역의 특성
@@ -88,13 +88,13 @@ IEEE 802.11 표준은 시간이 지남에 따라 계속 발전해왔으며, 각 
 graph LR
     A["802.11<br>1997년<br>2Mbps"] --> B["802.11b<br>1999년<br>11Mbps"] --> C["802.11a<br>1999년<br>54Mbps<br>5GHz"] --> D["802.11g<br>2003년<br>54Mbps<br>2.4GHz"] --> E["802.11n<br>2009년<br>600Mbps<br>2.4/5GHz"] --> F["802.11ac<br>2013년<br>6.9Gbps<br>5GHz"] --> G["802.11ax<br>2019년<br>9.6Gbps<br>2.4/5/6GHz<br>(Wi-Fi 6/6E)"]
 
-    style A fill:#f9f, stroke:#333, stroke-width:1px, color:#000
-    style B fill:#f9f, stroke:#333, stroke-width:1px, color:#000
-    style C fill:#bbf, stroke:#333, stroke-width:1px, color:#000
-    style D fill:#bbf, stroke:#333, stroke-width:1px, color:#000
-    style E fill:#bbf, stroke:#333, stroke-width:1px, color:#000
-    style F fill:#bfb, stroke:#333, stroke-width:1px, color:#000
-    style G fill:#bfb, stroke:#333, stroke-width:2px, color:#000
+    style A fill:#808080, stroke:#333, stroke-width:1px, color:#000
+    style B fill:#808080, stroke:#333, stroke-width:1px, color:#000
+    style C fill:#daa520, stroke:#333, stroke-width:1px, color:#000
+    style D fill:#daa520, stroke:#333, stroke-width:1px, color:#000
+    style E fill:#daa520, stroke:#333, stroke-width:1px, color:#000
+    style F fill:#3cb371, stroke:#333, stroke-width:1px, color:#000
+    style G fill:#3cb371, stroke:#333, stroke-width:2px, color:#000
 ```
 
 #### 주요 802.11 표준 비교
@@ -164,10 +164,10 @@ graph TD
     G["AES-CCMP 암호화<br>강력한 보안"] -.-> C
     H["SAE(Simultaneous Authentication of Equals)<br>향상된 암호화 및 인증"] -.-> D
 
-    style A fill:#fdd, stroke:#f00, stroke-width:1px, color:#000
-    style B fill:#ffd, stroke:#333, stroke-width:1px, color:#000
-    style C fill:#bfb, stroke:#333, stroke-width:1px, color:#000
-    style D fill:#bbf, stroke:#333, stroke-width:2px, color:#000
+    style A fill:#c35b5b, stroke:#f00, stroke-width:1px, color:#000
+    style B fill:#daa520, stroke:#333, stroke-width:1px, color:#000
+    style C fill:#3cb371, stroke:#333, stroke-width:1px, color:#000
+    style D fill:#808080, stroke:#333, stroke-width:2px, color:#000
 ```
 
 - **WEP**: 초기 보안 프로토콜, 심각한 취약점으로 현재 사용 권장되지 않음
@@ -209,9 +209,9 @@ graph TD
         I["임시 P2P 네트워크"] -.-> C
     end
 
-    style A fill:#bbf, stroke:#333, stroke-width:2px, color:#000
-    style B fill:#bbf, stroke:#333, stroke-width:2px, color:#000
-    style C fill:#bbf, stroke:#333, stroke-width:2px, color:#000
+    style A fill:#808080, stroke:#333, stroke-width:2px, color:#000
+    style B fill:#808080, stroke:#333, stroke-width:2px, color:#000
+    style C fill:#808080, stroke:#333, stroke-width:2px, color:#000
 ```
 
 ##### BSS (Basic Service Set)
@@ -300,10 +300,10 @@ graph TD
 
     I[인터넷] --- A
 
-    style A fill:#bbf, stroke:#333, stroke-width:2px, color:#000
-    style B fill:#bbf, stroke:#333, stroke-width:2px, color:#000
-    style C fill:#bbf, stroke:#333, stroke-width:2px, color:#000
-    style D fill:#bbf, stroke:#333, stroke-width:2px, color:#000
+    style A fill:#3cb371, stroke:#333, stroke-width:2px, color:#000
+    style B fill:#3cb371, stroke:#333, stroke-width:2px, color:#000
+    style C fill:#3cb371, stroke:#333, stroke-width:2px, color:#000
+    style D fill:#3cb371, stroke:#333, stroke-width:2px, color:#000
 ```
 
 - **특징**:

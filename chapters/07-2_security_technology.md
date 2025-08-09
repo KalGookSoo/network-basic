@@ -25,9 +25,9 @@ graph TD
         F1["키 배포 문제<br>(안전한 키 교환 필요)"] -.-> B1
         F1 -.-> D1
 
-        style B1 fill:#f9f, stroke:#333, stroke-width:2px, color:#000
-        style D1 fill:#f9f, stroke:#333, stroke-width:2px, color:#000
-        style F1 fill:#fdd, stroke:#f00, stroke-width:1px, color:#000
+        style B1 fill:#808080, stroke:#333, stroke-width:2px, color:#000
+        style D1 fill:#808080, stroke:#333, stroke-width:2px, color:#000
+        style F1 fill:#c35b5b, stroke:#f00, stroke-width:1px, color:#000
     end
 
     subgraph "공개 키 암호화"
@@ -39,8 +39,8 @@ graph TD
         F2["공개 키는 누구나 접근 가능<br>개인 키는 소유자만 접근 가능"] -.-> B2
         F2 -.-> D2
 
-        style B2 fill:#bbf, stroke:#333, stroke-width:2px, color:#000
-        style D2 fill:#bfb, stroke:#333, stroke-width:2px, color:#000
+        style B2 fill:#daa520, stroke:#333, stroke-width:2px, color:#000
+        style D2 fill:#3cb371, stroke:#333, stroke-width:2px, color:#000
     end
 
     G1["장점: 속도 빠름<br>단점: 키 배포 문제"] --> A1
@@ -182,10 +182,10 @@ graph TD
     G --> H[중간 CA 인증서 검증<br>루트 CA의 공개 키로 서명 확인]
     H --> I[루트 CA 인증서 확인<br>신뢰 저장소에 있는지 확인]
 
-    style B fill:#f9f, stroke:#333, stroke-width:2px, color:#000
-    style C fill:#bbf, stroke:#333, stroke-width:1px, color:#000
-    style D fill:#bfb, stroke:#333, stroke-width:1px, color:#000
-    style A fill:#fbb, stroke:#333, stroke-width:1px, color:#000
+    style B fill:#808080, stroke:#333, stroke-width:2px, color:#000
+    style C fill:#daa520, stroke:#333, stroke-width:1px, color:#000
+    style D fill:#3cb371, stroke:#333, stroke-width:1px, color:#000
+    style A fill:#c35b5b, stroke:#333, stroke-width:1px, color:#000
 ```
 
 - **인증서 검증 과정**:

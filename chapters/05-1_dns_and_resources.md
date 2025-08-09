@@ -147,11 +147,11 @@ flowchart TD
         C -->|path| D["?param1=value1&param2=value2"]
         D -->|query| E["#section1"]
     end
-    style E fill:#f9f,stroke:#333,stroke-width:2px
-    style D fill:#bbf,stroke:#333,stroke-width:2px
-    style C fill:#bfb,stroke:#333,stroke-width:2px
-    style B fill:#fbb,stroke:#333,stroke-width:2px
-    style A fill:#ff9,stroke:#333,stroke-width:2px
+    style E fill:#808080,stroke:#333,stroke-width:2px
+    style D fill:#daa520,stroke:#333,stroke-width:2px
+    style C fill:#3cb371,stroke:#333,stroke-width:2px
+    style B fill:#c35b5b,stroke:#333,stroke-width:2px
+    style A fill:#daa520,stroke:#333,stroke-width:2px
 ```
 
 위 URL의 구성 요소:

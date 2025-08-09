@@ -32,10 +32,10 @@ graph LR
         G["99.999% <br> (5개의 9)"] --> H["5.26분"]
     end
 
-    style A fill:#f9f, stroke:#333, stroke-width:1px, color:#000
-    style C fill:#bbf, stroke:#333, stroke-width:1px, color:#000
-    style E fill:#bfb, stroke:#333, stroke-width:1px, color:#000
-    style G fill:#fbb, stroke:#333, stroke-width:1px, color:#000
+    style A fill:#808080, stroke:#333, stroke-width:1px, color:#000
+    style C fill:#daa520, stroke:#333, stroke-width:1px, color:#000
+    style E fill:#3cb371, stroke:#333, stroke-width:1px, color:#000
+    style G fill:#c35b5b, stroke:#333, stroke-width:1px, color:#000
 ```
 
 기업의 서비스 특성과 중요도에 따라 적절한 가용성 목표를 설정하고, 이를 달성하기 위한 기술적 방안을 마련해야 합니다.
@@ -62,10 +62,10 @@ graph TD
     D --> D1[재해 복구<br>Disaster Recovery]
     D --> D2[다중 리전 배포]
 
-    style A fill:#f9f, stroke:#333, stroke-width:2px, color:#000
-    style B fill:#bbf, stroke:#333, stroke-width:1px, color:#000
-    style C fill:#bfb, stroke:#333, stroke-width:1px, color:#000
-    style D fill:#fbb, stroke:#333, stroke-width:1px, color:#000
+    style A fill:#808080, stroke:#333, stroke-width:2px, color:#000
+    style B fill:#daa520, stroke:#333, stroke-width:1px, color:#000
+    style C fill:#3cb371, stroke:#333, stroke-width:1px, color:#000
+    style D fill:#c35b5b, stroke:#333, stroke-width:1px, color:#000
 ```
 
 #### 하드웨어 이중화
@@ -122,15 +122,15 @@ graph TD
     I --> C
     I --> E
 
-    style B fill:#f9f, stroke:#333, stroke-width:2px, color:#000
-    style H fill:#bbf, stroke:#333, stroke-width:1px, color:#000
-    style F1 fill:#bfb, stroke:#333, stroke-width:1px, color:#000
-    style F2 fill:#bfb, stroke:#333, stroke-width:1px, color:#000
-    style F3 fill:#bfb, stroke:#333, stroke-width:1px, color:#000
-    style F4 fill:#bfb, stroke:#333, stroke-width:1px, color:#000
-    style G1 fill:#fbb, stroke:#333, stroke-width:1px, color:#000
-    style G2 fill:#fbb, stroke:#333, stroke-width:1px, color:#000
-    style D fill:#fdd, stroke:#f00, stroke-width:2px, stroke-dasharray: 5 5, color:#000
+    style B fill:#808080, stroke:#333, stroke-width:2px, color:#000
+    style H fill:#daa520, stroke:#333, stroke-width:1px, color:#000
+    style F1 fill:#3cb371, stroke:#333, stroke-width:1px, color:#000
+    style F2 fill:#3cb371, stroke:#333, stroke-width:1px, color:#000
+    style F3 fill:#3cb371, stroke:#333, stroke-width:1px, color:#000
+    style F4 fill:#3cb371, stroke:#333, stroke-width:1px, color:#000
+    style G1 fill:#c35b5b, stroke:#333, stroke-width:1px, color:#000
+    style G2 fill:#c35b5b, stroke:#333, stroke-width:1px, color:#000
+    style D fill:#c35b5b, stroke:#f00, stroke-width:2px, stroke-dasharray: 5 5, color:#000
 ```
 
 #### 로드 밸런서의 종류
@@ -168,8 +168,8 @@ graph TD
         C1 --> D1[웹 서버 1]
         C1 --> E1[웹 서버 2]
 
-        style B1 fill:#bbf, stroke:#333, stroke-width:2px, color:#000
-        style A1 fill:#bfb, stroke:#333, stroke-width:1px, color:#000
+        style B1 fill:#daa520, stroke:#333, stroke-width:2px, color:#000
+        style A1 fill:#3cb371, stroke:#333, stroke-width:1px, color:#000
     end
 
     subgraph "리버스 프록시"
@@ -180,10 +180,10 @@ graph TD
         D2 --> F2[내부 서버 2]
         D2 --> G2[내부 서버 3]
 
-        style D2 fill:#f9f, stroke:#333, stroke-width:2px, color:#000
-        style E2 fill:#fbb, stroke:#333, stroke-width:1px, color:#000
-        style F2 fill:#fbb, stroke:#333, stroke-width:1px, color:#000
-        style G2 fill:#fbb, stroke:#333, stroke-width:1px, color:#000
+        style D2 fill:#808080, stroke:#333, stroke-width:2px, color:#000
+        style E2 fill:#c35b5b, stroke:#333, stroke-width:1px, color:#000
+        style F2 fill:#c35b5b, stroke:#333, stroke-width:1px, color:#000
+        style G2 fill:#c35b5b, stroke:#333, stroke-width:1px, color:#000
     end
 
     H1["클라이언트가 프록시를<br>명시적으로 설정"] --> B1
